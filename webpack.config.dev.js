@@ -1,79 +1,78 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
-const Dotenv = require('dotenv-webpack');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
-
-module.exports={
-  entry: './src/index.js',
-  output:{
-    path: path.resolve(__dirname,'dist'),
-    filename: '[name].[contenthash].js',
-    assetModuleFilename:'assets/images/[hash][ext][query]',
+module.exports = {
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].[contenthash].js",
+    assetModuleFilename: "assets/images/[hash][ext][query]",
   },
-  mode:'development',
-  resolve:{
-    extensions:['.js'],
-    alias:{
-      '@styles': path.resolve(__dirname,'src/styles'),
-      '@images': path.resolve(__dirname,'src/assets/images')
-    }
+  mode: "development",
+  resolve: {
+    extensions: [".js"],
+    alias: {
+      "@styles": path.resolve(__dirname, "src/styles"),
+      "@images": path.resolve(__dirname, "src/assets/images"),
+    },
   },
-  module:{
-    rules:[
+  module: {
+    rules: [
       {
-        test:/\.m?js$/,
+        test: /\.m?js$/,
         exclude: /node_modules/,
-        use:{
-          loader: 'babel-loader'
-        }
+        use: {
+          loader: "babel-loader",
+        },
       },
       {
-        test:/\.css$/i,
-        use:[MiniCssExtractPlugin.loader,'css-loader',]
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
-        test:/\.(png|svg|jpg|jpeg|gif)$/i,
-         type: 'asset/resource',
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        use:{
-          loader:'url-loader',
-          options:{
+        use: {
+          loader: "url-loader",
+          options: {
             name: "[name].[contenthash].[ext]",
             outputPath: "./assets/fonts/",
             publicPath: "../assets/fonts/",
             esModule: false,
-          }
-        }
+          },
+        },
       },
-    ]
+    ],
   },
-  plugins:[
+  plugins: [
     new HtmlWebpackPlugin({
-      inject:true,
-      template:'./public/index.html',
-      filename:'./index.html',
+      inject: true,
+      template: "./public/index.html",
+      filename: "./index.html",
     }),
     new MiniCssExtractPlugin({
-        filename:'assets/[name].[contenthash].css'
+      filename: "assets/[name].[contenthash].css",
     }),
     new CopyPlugin({
-      patterns:[
+      patterns: [
         {
-          from: path.resolve(__dirname,'src','assets/images'),
-          to: 'assets/images'
-        }
-      ]
+          from: path.resolve(__dirname, "src", "assets/images"),
+          to: "assets/images",
+        },
+      ],
     }),
-    new Dotenv(),
   ],
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    static: {
+      directory: path.join(__dirname, "public"),
+    },
     compress: true,
-    historyApiFallback: true,
-    port: 3006,
+    port: 9000,
   },
-}
+};

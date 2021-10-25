@@ -1,9 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>RickyAndMorty</title>
+  </head>
+
+  <body>
+    <nav class="navigation">
+      <ol class="navigation__lists">
+        <li class="navigation__lists--items"><a href="#home">home</a></li>
+        <li class="navigation__lists--items"><a href="#contact">contact</a></li>
+        <li class="navigation__lists--items">
+          <a href="#characters">characters</a>
+        </li>
+      </ol>
+    </nav>
+    <section id="home" class="presentation">
+      <div class="presentation__container">
+        <h1>Character from Rick And Morty with API</h1>
+        <p>
+          Character calls to the
+          <a href="https://rickandmortyapi.com/api/character/">API</a> with
+          async/await
+        </p>
+        <p>then rendering the image and data in a template</p>
+        <div id="contact" class="social">
+          <a
+            href="https://www.linkedin.com/in/hernan-hernandezz"
+            target="_blank"
+            class="social-link linkedin"
+          ></a>
+          <a
+            href="https://github.com/Hernan-Hernandezz"
+            target="_blank"
+            class="social-link github"
+          ></a>
+          <a
+            href="https://platzi.com/p/Hernan-Hernandezz"
+            target="_blank"
+            class="social-link platzi"
+          ></a>
+          <a
+            href="mailto:andreshernandez0827@gmail.com"
+            target="_blank"
+            class="social-link mail"
+          ></a>
+          <a
+            href="https://twitter.com/HernanHernande_"
+            target="_blank"
+            class="social-link twitter"
+          ></a>
+        </div>
+      </div>
+    </section>
+    <main id="characters" class="characters"></main>
+  </body>
 </html>

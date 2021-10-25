@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+}
+body {
+  margin: 0;
+  background-color: #4c0085;
+  color: white;
+  font-family: 'KoHo';
+}
+@font-face {
+  font-family: 'KoHo';
+  src: url('../src/assets/fonts/KoHo/KoHo-MediumItalic.ttf');
+}
+.navigation {
+  position: fixed;
+  z-index: 2;
+  background-color: rgba(20, 136, 204, 0.5);
+  width: 100vw;
+}
+.navigation__lists {
+  display: flex;
+  justify-content: space-around;
+}
+.navigation__lists--items {
+  margin: 10px;
+  list-style-type: none;
+}
+.navigation__lists--items a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+}
+@media screen and (max-width: 768px) {
+  .navigation {
+    position: absolute;
+  }
+}
+.card {
+  display: flex;
+  width: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 2px 2px 10px #1488cc;
+}
+.card__main {
+  background-image: linear-gradient(90deg, #1488cc, #2b32b2);
+}
+.card__main--image {
+  width: 100%;
+}
+.card__main--name {
+  width: 100%;
+}
+.card__dates {
+  width: 0px ;
+  overflow: hidden ;
+  align-items: center;
+  line-height: 22px;
+  transition: 1s ease-in;
+  background-image: linear-gradient(90deg, #2b32b2, #1488cc);
+}
+.card__dates strong {
+  text-transform: uppercase;
+}
+.card:hover .card__main--image {
+  width: 150px;
+}
+.card:hover .card__main--name {
+  width: 150px;
+}
+.card:hover .card__dates {
+  width: 170px;
+  position: relative ;
+  overflow: hidden;
+}
+.presentation {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  min-height: 540px;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../src/assets/images/rick-y-morty-en-el-espacio_3840x2160_xtrafondos.com.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-clip: border-box;
+  background-position: bottom center;
+  background-attachment: fixed;
+}
+.presentation__container {
+  width: 90%;
+  padding: 5%;
+  line-height: 60px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  word-spacing: 3px;
+  font-size: 20px;
+  background-color: rgba(20, 136, 204, 0.5);
+}
+.presentation__container a {
+  color: inherit;
+}
+.characters {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 10px 10px;
+  padding-top: 30px;
+  justify-items: center;
+}
+.social {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  grid-gap: 10px 10px;
+}
+.social-link {
+  width: 50px;
+  height: 50px;
+  margin: 20px;
+}
+.social-link.twitter {
+  background-size: 50px 50px;
+  background-image: url("../src/assets/images/twitter.svg");
+}
+.social-link.linkedin {
+  background-size: 50px 50px;
+  background-image: url("../src/assets/images/linkedin.svg");
+}
+.social-link.github {
+  background-size: 50px 50px;
+  background-image: url("../src/assets/images/github.svg");
+}
+.social-link.platzi {
+  background-size: 50px 50px;
+  background-image: url("../src/assets/images/platzi.svg");
+}
+.social-link.mail {
+  background-size: 50px 50px;
+  background-image: url("../src/assets/images/mail.svg");
+}

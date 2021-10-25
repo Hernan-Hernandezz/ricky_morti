@@ -1,0 +1,24 @@
+.navigation{
+  position: fixed;
+  z-index: 2;
+  background-color: @color_principal-variacion;
+  width: 100vw;
+  &__lists{
+    display:flex;
+    justify-content: space-around;
+    &--items{
+      margin: 10px;
+      list-style-type: none;
+      & a{
+        text-transform: uppercase;
+        text-decoration: none;
+        color: white;
+      }
+    }
+  }
+}
+@media screen and(max-width:768px){
+  .navigation{
+    position: absolute;
+  }
+}
