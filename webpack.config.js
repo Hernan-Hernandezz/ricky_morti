@@ -4,22 +4,24 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-//const Dotenv = require("dotenv-webpack");
+const Dotenv = require("dotenv-webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].[contenthast].js",
-    assetModuleFilename: "assets/images/[hast][ext][query]",
+    filename: "[name].[contenthash].js",
+    assetModuleFilename: "assets/images/[hash][ext][query]",
   },
   mode: "production",
   resolve: {
     extensions: [".js"],
     alias: {
-      "@styles": path.resolve(__dirname, "src/styles"),
-      "@images": path.resolve(__dirname, "src/assets/images"),
+      "@utils": path.resolve(__dirname, "src/utils/"),
+      "@templates": path.resolve(__dirname, "src/templates/"),
+      "@styles": path.resolve(__dirname, "src/styles/"),
+      "@images": path.resolve(__dirname, "src/assets/images/"),
     },
   },
   module: {
@@ -32,25 +34,35 @@ module.exports = {
         },
       },
       {
-        test: /\.css$|.less$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
+        test: /\.css|.less$/i,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: "less-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
       },
       {
-        test: /\.pug$/i,
-        use: {
-          loader: "pug-html-loader",
-        },
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        test: /\.(woff|woff2)$/,
         use: {
           loader: "url-loader",
           options: {
-            name: "[name].[contenthast].[ext]",
+            limit: 10000,
+            mimetype: "application/font-woff",
+            name: "[name].[contenthash].[ext]",
             outputPath: "./assets/fonts/",
             publicPath: "../assets/fonts/",
             esModule: false,
@@ -61,12 +73,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      inject: false,
+      inject: true,
       template: "./public/index.html",
       filename: "./index.html",
     }),
     new MiniCssExtractPlugin({
-      filename: "assets/[name].[contenthast].css",
+      filename: "assets/[name].[contenthash].css",
     }),
     new CopyPlugin({
       patterns: [
@@ -76,7 +88,7 @@ module.exports = {
         },
       ],
     }),
-    //new Dotenv(),
+    new Dotenv(),
     new CleanWebpackPlugin(),
   ],
   optimization: {
