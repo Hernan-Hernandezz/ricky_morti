@@ -13,6 +13,31 @@
     &--name{
       width: 100%;
     }
+    &--status{
+      position: relative;
+    height: 0;
+    text-align: start;
+    top: 5%;
+    left: 5%;
+      & .Alive{
+        border: 2px black solid;
+        background-color: rgba(20, 136,204, 0.75);
+        border-radius: 30%;
+        padding: 5px;
+      }
+      & .Dead{
+        border: 2px black solid;
+        background-color: rgba(204, 20, 20, 0.75);
+        border-radius: 30%;
+        padding: 5px;
+      }
+      & .unknown{
+        border: 2px black solid;
+        background-color: rgba(80, 80, 80, 0.75);
+        border-radius: 30%;
+        padding: 5px;
+      }
+    }
   }
   &__dates{
   width: 0px ;

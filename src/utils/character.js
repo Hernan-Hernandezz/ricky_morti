@@ -28,12 +28,12 @@ const card = async (i) => {
   div.classList.add("card");
   div.innerHTML = `
       <div class="card__main">
+        <p class="card__main--status"><span class="${status}">${status}</span></p>
         <img src="${image}" class="card__main--image"></img>
         <h2 class="card__main--name">${name}</h2>
         </div>
       <div class="card__dates">
         <p><strong>id api:</strong></br>${id}</p>
-        <p><strong>status:</strong></br>${status}</p>
         <p><strong>gender:</strong></br>${gender}</p>
         <p><strong>species:</strong></br>${species}</p>
       </div>
@@ -46,7 +46,7 @@ const card = async (i) => {
   const length = await count();
   console.log(length);
   //iterates over the number of characters
-  for (let i = 1; i <= length; i++) {
+  for (let i = 1; i <= 20; i++) {
     const data = await card(i);
     characters.appendChild(data);
   }
