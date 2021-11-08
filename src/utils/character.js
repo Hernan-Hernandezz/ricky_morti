@@ -1,28 +1,38 @@
 const API = "https://rickandmortyapi.com/api/character/";
 
+const pages = async () => {
+  const response = await fetch(API);
+  const data = await response.json();
+  const pages = await data.info.pages;
+  console.log(pages);
+  for (let i = 1; i <= (await pages); i++) {
+    addItem(i);
+  }
+};
+
+const addItem = (i) => {
+  const pages = document.querySelector("#pages");
+  const option = document.createElement("option");
+  const text = document.createTextNode(`${i}`);
+  option.appendChild(text);
+  pages.appendChild(option);
+};
 //get number of characters
-const count = async () => {
+const people = async () => {
   try {
     const reponse = await fetch(API);
     const data = await reponse.json();
-    const count = data.info.count;
-    return count;
+    const people = await data.results;
+    await people.forEach(async (i) => {
+      const characters = document.getElementById("characters");
+      const data = await card(i);
+      characters.appendChild(data);
+    });
   } catch (e) {}
-};
-//get individual  character information
-const getdata = async (character) => {
-  try {
-    const response = await fetch(`${API}${character}`);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    return error;
-  }
 };
 //template of character
 const card = async (i) => {
-  const object = await getdata(i);
+  const object = await i;
   const { name, image, id, status, gender, species } = object;
   const div = document.createElement("div");
   div.classList.add("card");
@@ -42,12 +52,6 @@ const card = async (i) => {
 };
 
 (async function App() {
-  const characters = document.getElementById("characters");
-  const length = await count();
-  console.log(length);
-  //iterates over the number of characters
-  for (let i = 1; i <= 20; i++) {
-    const data = await card(i);
-    characters.appendChild(data);
-  }
+  await pages();
+  await people();
 })();
