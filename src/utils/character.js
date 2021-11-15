@@ -1,26 +1,25 @@
-const API = "https://rickandmortyapi.com/api/character/";
+const API = "https://rickandmortyapi.com/api/character";
 
 const pages = async () => {
   const response = await fetch(API);
   const data = await response.json();
   const pages = await data.info.pages;
   console.log(pages);
-  for (let i = 1; i <= (await pages); i++) {
-    addItem(i);
-  }
+  return pages;
 };
 
-const addItem = (i) => {
-  const pages = document.querySelector("#pages");
-  const option = document.createElement("option");
-  const text = document.createTextNode(`${i}`);
-  option.appendChild(text);
-  pages.appendChild(option);
-};
+//const addItem = (i) => {
+//const pages = document.querySelector("#pages");
+//const option = document.createElement("option");
+//const text = document.createTextNode(`${i}`);
+//option.appendChild(text);
+//pages.appendChild(option);
+//};
 //get number of characters
-const people = async () => {
+const people = async (page) => {
   try {
-    const reponse = await fetch(API);
+    console.log("entro a people");
+    const reponse = await fetch(`${API}?page=${page}`);
     const data = await reponse.json();
     const people = await data.results;
     await people.forEach(async (i) => {
@@ -52,6 +51,8 @@ const card = async (i) => {
 };
 
 (async function App() {
-  await pages();
-  await people();
+  const count = await pages();
+  for (let i = 1; i <= count; i++) {
+    people(i);
+  }
 })();
