@@ -1,19 +1,12 @@
 const API = "https://rickandmortyapi.com/api/character";
 
 const pages = async () => {
-  const response = await fetch(API);
+  const response = await fetch(API + "/");
   const data = await response.json();
   const pages = await data.info.pages;
   return pages;
 };
 
-//const addItem = (i) => {
-//const pages = document.querySelector("#pages");
-//const option = document.createElement("option");
-//const text = document.createTextNode(`${i}`);
-//option.appendChild(text);
-//pages.appendChild(option);
-//};
 //get number of characters
 const people = async (page) => {
   try {
