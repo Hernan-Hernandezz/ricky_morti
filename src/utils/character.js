@@ -4,7 +4,6 @@ const pages = async () => {
   const response = await fetch(API);
   const data = await response.json();
   const pages = await data.info.pages;
-  console.log(pages);
   return pages;
 };
 
@@ -18,7 +17,6 @@ const pages = async () => {
 //get number of characters
 const people = async (page) => {
   try {
-    console.log("entro a people");
     const reponse = await fetch(`${API}?page=${page}`);
     const data = await reponse.json();
     const people = await data.results;
