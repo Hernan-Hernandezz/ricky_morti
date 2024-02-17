@@ -29,7 +29,7 @@ const card = async (i) => {
   div.innerHTML = `
       <div class="card__main">
         <p class="card__main--status"><span class="${status}">${status}</span></p>
-        <img src="${image}" class="card__main--image"></img>
+        <img loading="lazy" src="${image}" class="card__main--image"></img>
         <h2 class="card__main--name">${name}</h2>
         </div>
       <div class="card__dates">
